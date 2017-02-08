@@ -22,7 +22,7 @@ export default class Search extends Component {
       dataToSearch = refObj.filterInput.value;
     }
 
-    this.props.handleFilteredProjects(dataToSearch,this.state.type);
+    this.props.onSearchInputs(dataToSearch,this.state.type);
     //filter.set(dataToSearch);
   }
 
