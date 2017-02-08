@@ -35,11 +35,11 @@ Schemas.Project = new SimpleSchema({
     label : 'date'
   },
   hours : {
-    type : String,
+    type : Number,
     label : 'hours'
   },
   price : {
-    type : String,
+    type : Number,
     label : 'price'
   },
   course : {

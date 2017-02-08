@@ -22,7 +22,7 @@ function filterData(searchInput,selectorName) {
       return Projects.find({hours : { $gt: searchInput } }).fetch();
     }else if(selectorName == 'price') {
       var searchInput = Number(searchInput);
-      return Projects.find({hours : { $gt: searchInput } }).fetch();
+      return Projects.find({price : { $gt: searchInput } }).fetch();
     }else if(selectorName == 'course' || selectorName == 'classes') {
       console.log(Projects.find({selectorName : searchInput}).fetch());
       return Projects.find({selectorName : searchInput}).fetch();

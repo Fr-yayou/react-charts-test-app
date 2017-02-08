@@ -16,6 +16,17 @@ const checkValue = (value,type,msg) => {
   }
 }
 
+const dislayHours = (total) => {
+  let hours = Math.floor(total/60);
+  let mins = Math.floor(total%60);
+  if(hours < 10) {
+    hours = '0'+hours;
+  }else if(mins < 10) {
+    mins = '0'+mins;
+  }
+  return hours+':'+mins;
+}
+
 const calculateFormattedTime = (fromTime,toTime) => {
   if(!fromTime || !toTime) {
     throw new Error('Time objects are not passed');
@@ -28,15 +39,7 @@ const calculateFormattedTime = (fromTime,toTime) => {
     if(fromTimeInMinutes > toTimeInMinutes) {
       throw new Error("From can't be greater than to (hour/min)");
     }else {
-      let total = toTimeInMinutes - fromTimeInMinutes;
-      let hours = Math.floor(total/60);
-      let mins = Math.floor(total%60);
-      if(hours < 10) {
-        hours = '0'+hours;
-      }else if(mins < 10) {
-        mins = '0'+mins;
-      }
-      return hours+':'+mins;
+      return total = toTimeInMinutes - fromTimeInMinutes;
     }
   }
 }
@@ -49,7 +52,7 @@ export default class ProjectDataForm extends Component {
         let object = {};
         object.name = checkValue(projectData.projectName.value.trim() , 'project name');
         object.description = checkValue(projectData.description.value.trim(),'description');
-        object.price = checkValue(projectData.price.value.trim(),'price');
+        object.price = Number(checkValue(projectData.price.value.trim(),'price'));
 
         object.from = {};
         object.from.hours = checkValue(projectData.fromHours.value.trim(),'hours in from ');
