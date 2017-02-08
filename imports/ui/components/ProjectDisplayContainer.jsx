@@ -17,8 +17,12 @@ import {ProjectDisplay} from './ProjectDisplay'
 
 function filterData(searchInput,selectorName) {
   if(searchInput || searchInput == '') {
-    if(selectorName == 'hours' || selectorName == 'price') {
-      return Projects.find({ selectorName : { $gt: searchInput } }).fetch();
+    if(selectorName == 'hours') {
+      var searchInput = Number(searchInput);
+      return Projects.find({hours : { $gt: searchInput } }).fetch();
+    }else if(selectorName == 'price') {
+      var searchInput = Number(searchInput);
+      return Projects.find({hours : { $gt: searchInput } }).fetch();
     }else if(selectorName == 'course' || selectorName == 'classes') {
       console.log(Projects.find({selectorName : searchInput}).fetch());
       return Projects.find({selectorName : searchInput}).fetch();
