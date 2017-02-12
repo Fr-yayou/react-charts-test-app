@@ -8,7 +8,12 @@ html, body {
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
+
+body {
+  font-family: ubuntu;
+}
 
 li {
   list-style: none; }
@@ -30,12 +35,40 @@ table {
     text-align: center;
     padding: .5rem; }
 
+    header {
+      display : flex;
+      justify-content: space-between;
+      align-items: center;
+      background : #50d550;
+      height: 5rem;
+    }
+
+    .logo {
+      margin-left: 1rem;
+    }
+
+    .main-navigation {
+      display: flex;
+      font-size : 1.2rem;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+
+    .main-navigation li {
+      padding: .5rem;
+    }
+
+.display-project-page {
+  width: 80%;
+  margin: 1rem auto;
+}
+
 .project-form {
   width: 100%; }
   .project-form-wrapper {
     width: 30%;
     margin: 2rem auto;
-    font-family: ubuntu; }
+     }
   .project-form input, .project-form textarea, .project-form select {
     border: 0;
     border: 0.15rem solid #50d550;
@@ -55,6 +88,19 @@ table {
 
 .project-display-wrapper {
   margin: 0 auto; }
+
+  /*
+    CHARTS
+  */
+
+  .charts {
+    width : 60%;
+    margin: 5rem auto;
+  }
+
+  /*
+    RING ANIMATION.
+  */
 
 @-webkit-keyframes uil-ring-anim {
   0% {

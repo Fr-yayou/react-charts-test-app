@@ -1,15 +1,26 @@
 import React, {Component} from 'react';
 import { moment } from 'meteor/momentjs:moment';
 import Search from './Search';
+import Charts from './Charts'
 import ProjectDisplayContainer from './ProjectDisplayContainer'
 import {SpinnerView} from 'meteor/dpraburaj:react-spin';
 
 const manipulateDate = (date) => { return moment(date).format('DD-MM-YYYY')}
 
+const mapData = (projectData) => {
+    let data = [];
+    projectData.map(function(project) {
+      data.push({
+        xLabel : project.name,
+        qty : Number(project.price)
+      })
+    });
+    return data;
+}
+
 const renderData = (projectData) => {
   return ( projectData && projectData.length > 0 ) ?
       <div className="project-display-wrapper">
-
           <table>
             {console.log(projectData,"-----")}
             <thead>
@@ -43,6 +54,7 @@ const renderData = (projectData) => {
               }
             </tbody>
           </table>
+          <Charts projectData={mapData(projectData)} height={200} width={750} />
       </div> : <p>No projects yet!</p>
 }
 

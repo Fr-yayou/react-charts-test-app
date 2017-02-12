@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import ProjectDisplayContainer from '../components/ProjectDisplayContainer';
 import Search from '../components/Search';
+import Charts from '../components/Charts';
 import {createContainer} from 'meteor/react-meteor-data';
 import ProjectDataForm from '../components/ProjectDataForm';
 import {FlowRouter} from 'meteor/kadira:flow-router';
@@ -26,9 +27,10 @@ export default class Home extends Component {
       return (<ProjectDataForm />);
     }else if(FlowRouter.getRouteName() == 'homePageDisplayData') {
       return (
-        <div>
+        <div className="display-project-page">
         <Search onSearchInputs={this.handleSearchInputs.bind(this)} />
         <ProjectDisplayContainer searchInput={this.state.searchInput} selectorName={this.state.selectorName}/>
+
         </div>
     );
     }
@@ -36,7 +38,6 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home-page-wrapper">
-        <a href="/display-projects">Review Data</a>
         {this.renderComponent()}
       </div>
     )

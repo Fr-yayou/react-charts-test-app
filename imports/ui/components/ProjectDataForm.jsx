@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import {Meteor} from 'meteor/meteor';
 
 import 'react-s-alert/dist/s-alert-default.css';
@@ -45,6 +46,10 @@ const calculateFormattedTime = (fromTime,toTime) => {
 }
 
 export default class ProjectDataForm extends Component {
+  componentDidMount() {
+      var el = ReactDOM.findDOMNode(this); // This is de div we are rendering
+      console.log(this);
+    }
     handleFormSubmit(e) {
       console.log(this);
       try{

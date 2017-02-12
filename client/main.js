@@ -1,3 +1,4 @@
+import React, {StyleSheet, Dimensions, PixelRatio} from "react-native";
 const {width, height, scale} = Dimensions.get("window"),
     vw = width / 100,
     vh = height / 100,
@@ -39,7 +40,8 @@ export default StyleSheet.create({
         "paddingTop": 0,
         "paddingRight": 0,
         "paddingBottom": 0,
-        "paddingLeft": 0
+        "paddingLeft": 0,
+        "fontFamily": "ubuntu"
     },
     "li": {
         "listStyle": "none"
@@ -84,6 +86,35 @@ export default StyleSheet.create({
         "paddingBottom": 0.5,
         "paddingLeft": 0.5
     },
+    "header": {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "alignItems": "center",
+        "background": "#50d550",
+        "height": 5
+    },
+    "logo": {
+        "marginLeft": 1
+    },
+    "main-navigation": {
+        "display": "flex",
+        "fontSize": 1.2,
+        "marginRight": 1,
+        "cursor": "pointer"
+    },
+    "main-navigation li": {
+        "paddingTop": 0.5,
+        "paddingRight": 0.5,
+        "paddingBottom": 0.5,
+        "paddingLeft": 0.5
+    },
+    "display-project-page": {
+        "width": "80%",
+        "marginTop": 1,
+        "marginRight": "auto",
+        "marginBottom": 1,
+        "marginLeft": "auto"
+    },
     "project-form": {
         "width": "100%"
     },
@@ -92,8 +123,7 @@ export default StyleSheet.create({
         "marginTop": 2,
         "marginRight": "auto",
         "marginBottom": 2,
-        "marginLeft": "auto",
-        "fontFamily": "ubuntu"
+        "marginLeft": "auto"
     },
     "project-form input": {
         "border": "0.15rem solid #50d550",
@@ -149,6 +179,13 @@ export default StyleSheet.create({
         "marginTop": 0,
         "marginRight": "auto",
         "marginBottom": 0,
+        "marginLeft": "auto"
+    },
+    "charts": {
+        "width": "60%",
+        "marginTop": 5,
+        "marginRight": "auto",
+        "marginBottom": 5,
         "marginLeft": "auto"
     },
     "uil-ring-css": {
