@@ -39,7 +39,8 @@ const calculateFormattedTime = (fromTime,toTime) => {
     let toTimeInMinutes = Number(toTime.hours) * 60 + Number(toTime.mins);
     if(fromTimeInMinutes > toTimeInMinutes) {
       throw new Error("From can't be greater than to (hour/min)");
-    }else {
+    }
+    else {
       return total = toTimeInMinutes - fromTimeInMinutes;
     }
   }

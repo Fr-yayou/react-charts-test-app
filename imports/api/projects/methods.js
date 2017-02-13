@@ -31,5 +31,11 @@ Meteor.methods({
   },
   removeProjectData(projectId) {
     return Projects.remove({_id : projectId});
+  },
+  editProjectPrice(projectId,newPrice) {
+    check(projectId,String);
+    check(newPrice,Number);
+    return Projects.update({_id : projectId},
+      { $set : { price : newPrice} });
   }
 })

@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { moment } from 'meteor/momentjs:moment';
+import { Projects } from '../../api/projects/projects.js';
+import Cell from './Cell';
 import Search from './Search';
-import Charts from './Charts'
-import ProjectDisplayContainer from './ProjectDisplayContainer'
+import Charts from './Charts';
+import ProjectDisplayContainer from './ProjectDisplayContainer';
 import {SpinnerView} from 'meteor/dpraburaj:react-spin';
 
 const manipulateDate = (date) => { return moment(date).format('DD-MM-YYYY')}
@@ -16,6 +18,18 @@ const mapData = (projectData) => {
       })
     });
     return data;
+}
+
+const displayLoader = () => {
+  return (
+  <div className='uil-ring-css'>
+    <div></div>
+  </div>
+  );
+}
+
+const handleEditData = (project) => {
+  console.log(project,"handle edit of the element");
 }
 
 const renderData = (projectData) => {
@@ -44,7 +58,7 @@ const renderData = (projectData) => {
                         <td>{project.description}</td>
                         <td>{project.from.hours}:{project.from.mins}</td>
                         <td>{project.to.hours}:{project.to.mins}</td>
-                        <td>{project.price}</td>
+                        <Cell price={project.price} projectId={project._id} />
                         <td>{manipulateDate(project.date)}</td>
                         <td>{project.course}</td>
                         <td>{project.classes}</td>
@@ -54,16 +68,8 @@ const renderData = (projectData) => {
               }
             </tbody>
           </table>
-          <Charts projectData={mapData(projectData)} height={200} width={750} />
+          <Charts projectData={mapData(projectData)} height={255} width={750} />
       </div> : <p>No projects yet!</p>
-}
-
-const displayLoader = () => {
-  return (
-  <div className='uil-ring-css'>
-    <div></div>
-  </div>
-  );
 }
 
 export const ProjectDisplay = ({loading,projects}) => {

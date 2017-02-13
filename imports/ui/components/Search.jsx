@@ -16,9 +16,11 @@ export default class Search extends Component {
     let dataToSearch;
     if(this.state.type == 'course') {
       dataToSearch = refObj.courses[refObj.courses.selectedIndex].value;
-    } else if (this.state.type == 'classes') {
+    }
+    else if (this.state.type == 'classes') {
       dataToSearch = refObj.classes[refObj.classes.selectedIndex].value;
-    } else {
+    }
+    else {
       dataToSearch = refObj.filterInput.value;
     }
 
@@ -51,7 +53,11 @@ export default class Search extends Component {
   renderConditionalData() {
     if(this.state.showInput) {
       return <input type="search" ref="filterInput" onChange={this.handleFilterDataSubmit.bind(this)}/>
-    }else if(this.state.showSelectBox && this.state.type == 'course') {
+    }
+    else if(this.state.showDateInput) {
+      return <input type="date" ref="filterInput" onChange={this.handleFilterDataSubmit.bind(this)}/>
+    }
+    else if(this.state.showSelectBox && this.state.type == 'course') {
         return (
           <label>
             Courses
@@ -90,6 +96,7 @@ export default class Search extends Component {
               <option value="hours">hours</option>
               <option value="price">price(greater than)</option>
               <option value="name">name</option>
+              <option value="date">Date</option>
               <option value="course">course</option>
               <option value="classes">class</option>
             </select>

@@ -2,7 +2,7 @@ import {Meteor} from 'meteor/meteor'
 import React,{Component} from 'react'
 import { createContainer } from 'meteor/react-meteor-data'
 import { Projects } from '../../api/projects/projects.js'
-import {ProjectDisplay} from './ProjectDisplay'
+import { ProjectDisplay } from './ProjectDisplay'
 
 // export default class ProjectDisplayContainer extends Component {
 //   render() {
@@ -24,9 +24,12 @@ function filterData(searchInput,selectorName) {
       var searchInput = Number(searchInput);
       return Projects.find({price : { $gt: searchInput } }).fetch();
     }else if(selectorName == 'course' || selectorName == 'classes') {
-      console.log(Projects.find({selectorName : searchInput}).fetch());
-      return Projects.find({selectorName : searchInput}).fetch();
-    }else {
+      return Projects.find({'course' : searchInput}).fetch();
+    } else if(selectorName == 'date') {
+      //let date = new Date(searchInput)
+      //return Projects.find({'date' : {$gt }).fetch();
+    }
+    else {
       const selector = {};
       selector.name = {
         $regex: new RegExp(`.*${searchInput}.*`, 'i')
@@ -42,12 +45,9 @@ function filterData(searchInput,selectorName) {
 export default ProjectDisplayContainer = createContainer(({ searchInput,selectorName }) => {
     const subscription = Meteor.subscribe('project-data');
     const loading = !subscription.ready();
-    console.log(typeof searchInput, typeof selectorName, "typeof command is running here.")
+    const ready = subscription.ready();
     let projects = filterData(searchInput,selectorName);
-
-    console.log(projects);
-
-    return { loading, projects ,filterData};
+    return { loading, projects,ready ,filterData};
   }, ProjectDisplay);
 
 

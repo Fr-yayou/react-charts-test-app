@@ -186,7 +186,8 @@ export default StyleSheet.create({
         "marginTop": 5,
         "marginRight": "auto",
         "marginBottom": 5,
-        "marginLeft": "auto"
+        "marginLeft": "auto",
+        "Border": ".1rem solid gray"
     },
     "uil-ring-css": {
         "background": "none",

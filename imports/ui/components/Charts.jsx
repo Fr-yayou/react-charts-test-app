@@ -21,8 +21,8 @@ export default class Charts extends Component {
 
     console.log(max,"maximum value of the array is this");
     let yScale = d3.scale.linear()
-      .domain([0, max])
-      .range([0, props.height - 15]);
+      .domain([0, max + 10])
+      .range([props.height -15,0]);
 
     let xScale = d3.scale.ordinal()
       .domain(d3.range(projectData.length))
@@ -31,13 +31,14 @@ export default class Charts extends Component {
     let yAxis = d3.svg.axis()
       .scale(yScale)
       .orient("left")
-      .ticks(5);
+      .ticks(10);
 
     let svg = d3.select("svg");
 
   //  yAxisG
     svg.append("g")
       .attr("class", "y axis")
+      .attr("transform","translate(30,0)")
       .call(yAxis)
       .append("text")
       .attr("transform", "rotate(-90)")
@@ -59,12 +60,11 @@ export default class Charts extends Component {
           return xScale(i);
         })
         .attr("y", function(d, i) {
-          console.log(d,i,props.height , yScale(d.qty),"bars . transition")
-          return props.height - yScale(d.qty);
+          return yScale(d.qty);
         })
         .attr("width", xScale.rangeBand())
         .attr("height", function(d, i) {
-          return yScale(d.qty)
+          return props.height - yScale(d.qty)
         });
 
     bars.exit()
@@ -83,8 +83,7 @@ export default class Charts extends Component {
 			return xScale(i) + xScale.rangeBand()/2;
 		})
 		.attr("y", function(d, i) {
-      console.log(d,i,"label qty",props.height);
-			return props.height - yScale(d.qty)
+    	return yScale(d.qty)
 		})
 		.text(function(d, i) {
 			return d.qty;
@@ -110,14 +109,16 @@ export default class Charts extends Component {
   componentDidMount() {
     let self = this;
     let el = ReactDOM.findDOMNode(self);
-    console.log(d3,"this is the current react node to which we are attaching the charts");
-    console.log(this,self.props.width,self.props.height);
     let svg = d3.select(el)
           .append('svg')
           .attr("width", self.props.width)
           .attr("height", self.props.height);
-    self.updateCharts(self.props);
 
+          self.updateCharts(self.props)
+  }
+  componentWillUpdate(nextProps){
+    // perform any preparations for an upcoming update
+    this.updateCharts(nextProps)
   }
   render() {
     return(
