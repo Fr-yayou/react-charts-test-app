@@ -30,7 +30,6 @@ export default class Home extends Component {
         <div className="display-project-page">
         <Search onSearchInputs={this.handleSearchInputs.bind(this)} />
         <ProjectDisplayContainer searchInput={this.state.searchInput} selectorName={this.state.selectorName}/>
-
         </div>
     );
     }
