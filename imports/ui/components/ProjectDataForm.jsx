@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Meteor} from 'meteor/meteor';
+import HelperFunctions from '../functions.js'
 
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
@@ -59,7 +60,7 @@ export default class ProjectDataForm extends Component {
         object.name = checkValue(projectData.projectName.value.trim() , 'project name');
         object.description = checkValue(projectData.description.value.trim(),'description');
         object.price = Number(checkValue(projectData.price.value.trim(),'price'));
-
+        HelperFunctions.validatePrice(object.price);
         object.from = {};
         object.from.hours = checkValue(projectData.fromHours.value.trim(),'hours in from ');
         object.from.mins = checkValue(projectData.fromMins.value.trim(),'mins in from ');
