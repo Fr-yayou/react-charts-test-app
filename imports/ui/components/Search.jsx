@@ -90,7 +90,7 @@ export default class Search extends Component {
     return (
       <div className="search-through-data">
         <form className="filter-data" onSubmit={this.handleFilterDataSubmit.bind(this)}>
-          <label>Sort data by
+          <label>Filter data by
             <select className="sort-by" ref="sortBy" onChange={this.handleSortBy.bind(this)}>
               <option value="unknown" >See options below</option>
               <option value="hours">hours</option>
@@ -102,7 +102,6 @@ export default class Search extends Component {
             </select>
           </label>
           {this.renderConditionalData()}
-          <input type="button" value="search" />
         </form>
       </div>
     )

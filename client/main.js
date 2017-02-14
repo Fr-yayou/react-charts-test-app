@@ -181,6 +181,45 @@ export default StyleSheet.create({
         "marginBottom": 0,
         "marginLeft": "auto"
     },
+    "search-through-data": {
+        "textAlign": "center",
+        "marginTop": 2,
+        "marginRight": "auto",
+        "marginBottom": 2,
+        "marginLeft": "auto"
+    },
+    "search-through-data form": {
+        "display": "inline-block"
+    },
+    "search-through-data form select": {
+        "border": "0.15rem solid #50d550",
+        "borderRadius": 0.5,
+        "paddingTop": 0.5,
+        "paddingRight": 0.5,
+        "paddingBottom": 0.5,
+        "paddingLeft": 0.5,
+        "marginTop": 0.5,
+        "marginRight": 0.5,
+        "marginBottom": 0.5,
+        "marginLeft": 0.5,
+        "display": "inline-block",
+        "background": "white"
+    },
+    "search-through-data form input[type='button']": {
+        "border": "0.15rem solid #50d550",
+        "borderRadius": 0.5,
+        "paddingTop": 0.5,
+        "paddingRight": 0.5,
+        "paddingBottom": 0.5,
+        "paddingLeft": 0.5,
+        "marginTop": 0.5,
+        "marginRight": 0.5,
+        "marginBottom": 0.5,
+        "marginLeft": 0.5,
+        "display": "inline-block",
+        "background": "white",
+        "cursor": "pointer"
+    },
     "charts": {
         "width": "60%",
         "marginTop": 5,

@@ -90,6 +90,33 @@ table {
   margin: 0 auto; }
 
   /*
+    SEARCH THROUGH THE DATA
+  */
+
+  .search-through-data {
+    text-align: center;
+    margin: 2rem auto;
+  }
+
+  .search-through-data form {
+    display : inline-block;
+  }
+
+  .search-through-data form select , .search-through-data form input[type='button'] {
+    border: 0;
+    border: 0.15rem solid #50d550;
+    border-radius: .5rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    display : inline-block;
+    background: white;
+  }
+
+  .search-through-data form input[type='button'] {
+    cursor: pointer;
+  }
+
+  /*
     CHARTS
   */
 

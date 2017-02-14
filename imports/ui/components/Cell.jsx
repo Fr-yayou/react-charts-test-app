@@ -13,7 +13,7 @@ export default class Cell extends Component {
     this.updateValue = this.updateValue.bind(this);
   }
   conditionalRender() {
-    if (!this.state.editTheData) return(<td>{this.props.price} <button onClick={this.editHandler}>Edit</button></td>)
+    if (!(this.state.editTheData)) return(<td>{this.props.price} <button onClick={this.editHandler}>Edit</button></td>)
     else return (<td><input ref="updatedValue" defaultValue={this.props.price} /><button onClick={this.updateValue}>Update</button></td>)
   }
   updateValue(e){
@@ -22,10 +22,12 @@ export default class Cell extends Component {
     let self = this;
     console.log(newPrice,projectId);
     Meteor.call("editProjectPrice",projectId,newPrice,(res,err) => {
+      this.setState({editTheData : false})
+
       console.log("Yessssssss updated")
-      self.setState({editTheData : true})
+      console.log(self,ReactDOM.findNode(self));
       if(res) {
-        self.setState({editTheData : true})
+        self.setState({editTheData : false})
         console.log(res);
       }
       else {
@@ -41,7 +43,8 @@ export default class Cell extends Component {
     return (<span>hello</span>)
   }
   render() {
-    {console.log('re rendering again')}
-    return this.conditionalRender();
+      let editState = this.state.editTheData;
+      {console.log('re rendering again editState',editState)}
+      return this.conditionalRender();
   }
 }

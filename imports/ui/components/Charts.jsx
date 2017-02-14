@@ -7,7 +7,7 @@ export default class Charts extends Component {
     super(props)
     this.updateCharts = this.updateCharts.bind(this);
   }
-  updateCharts(props) {
+  updateCharts(props,request) {
     console.log(props,"props,,,,,project DATA")
     let projectData = props.projectData;
     let max = 0;
@@ -32,9 +32,14 @@ export default class Charts extends Component {
       .scale(yScale)
       .orient("left")
       .ticks(10);
-
     let svg = d3.select("svg");
 
+    if(request == 'update') {
+      let yAxis = d3.svg.axis().scale(yScale).orient("left");
+      svg.selectAll("g.y.axis").transition()
+      	.duration(500)
+        .call(yAxis);
+    }
   //  yAxisG
     svg.append("g")
       .attr("class", "y axis")
@@ -118,7 +123,7 @@ export default class Charts extends Component {
   }
   componentWillUpdate(nextProps){
     // perform any preparations for an upcoming update
-    this.updateCharts(nextProps)
+    this.updateCharts(nextProps,'update')
   }
   render() {
     return(
