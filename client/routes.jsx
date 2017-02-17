@@ -5,7 +5,7 @@ import {mount} from 'react-mounter';
 {/* Layouts and Pages */}
 import MainLayout from '../imports/ui/layouts/MainLayout';
 import Home from '../imports/ui/pages/Home';
-
+import UploadFiles from '../imports/ui/pages/UploadFiles';
 FlowRouter.route('/',{
   name : 'homePage',
   action() {
@@ -20,6 +20,15 @@ FlowRouter.route('/display-projects',{
   action() {
     mount(MainLayout , {
       content : (<Home />)
+    })
+  }
+})
+
+FlowRouter.route('/upload-files',{
+  name : 'UploadFiles',
+  action() {
+    mount(MainLayout , {
+      content : (<UploadFiles />)
     })
   }
 })
