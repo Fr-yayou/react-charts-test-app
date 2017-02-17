@@ -1,10 +1,11 @@
 import React , {Component} from 'react';
+import {FlowRouter} from 'meteor/kadira:flow-router';
+
 import ProjectDisplayContainer from '../components/ProjectDisplayContainer';
 import Search from '../components/Search';
 import Charts from '../components/Charts';
 import {createContainer} from 'meteor/react-meteor-data';
 import ProjectDataForm from '../components/ProjectDataForm';
-import {FlowRouter} from 'meteor/kadira:flow-router';
 
 export default class Home extends Component {
   constructor(props) {
@@ -15,14 +16,12 @@ export default class Home extends Component {
     }
   }
   handleSearchInputs(searchInput,selectorName) {
-    console.log(searchInput,selectorName);
-      this.setState({
-        searchInput : searchInput,
-        selectorName : selectorName
-      })
+    this.setState({
+      searchInput : searchInput,
+      selectorName : selectorName
+    })
   }
   renderComponent() {
-    console.log(createContainer);
     if(FlowRouter.getRouteName() == 'homePage') {
       return (<ProjectDataForm />);
     }else if(FlowRouter.getRouteName() == 'homePageDisplayData') {

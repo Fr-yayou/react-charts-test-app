@@ -30,6 +30,7 @@ email@1.0.16
 es5-shim@4.6.15
 fastclick@1.0.13
 geojson-utils@1.0.10
+harrison:papa-parse@1.1.7
 hot-code-push@1.0.4
 html-tools@1.0.11
 htmljs@1.0.11
@@ -70,6 +71,7 @@ mongo@1.1.14
 mongo-id@1.0.6
 msavin:jetsetter@2.0.0
 msavin:mongol@2.0.1
+netanelgilad:excel@0.2.6
 npm-mongo@2.2.16_1
 observe-sequence@1.0.14
 ordered-dict@1.0.9

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
+import {SpinnerView} from 'meteor/dpraburaj:react-spin';
 import { moment } from 'meteor/momentjs:moment';
+
 import { Projects } from '../../api/projects/projects.js';
+import Loader from './Loader';
 import Cell from './Cell';
 import Search from './Search';
 import Charts from './Charts';
 import ProjectDisplayContainer from './ProjectDisplayContainer';
-import {SpinnerView} from 'meteor/dpraburaj:react-spin';
 
 const manipulateDate = (date) => { return moment(date).format('DD-MM-YYYY')}
 
@@ -18,18 +20,6 @@ const mapData = (projectData) => {
       })
     });
     return data;
-}
-
-const displayLoader = () => {
-  return (
-  <div className='uil-ring-css'>
-    <div></div>
-  </div>
-  );
-}
-
-const handleEditData = (project) => {
-  console.log(project,"handle edit of the element");
 }
 
 const renderData = (projectData) => {
@@ -73,5 +63,5 @@ const renderData = (projectData) => {
 }
 
 export const ProjectDisplay = ({loading,projects}) => {
-  return (loading || typeof loading == 'undefined') ? displayLoader() : renderData(projects);
+  return (loading || typeof loading == 'undefined') ? <Loader /> : renderData(projects);
 };

@@ -121,9 +121,9 @@ export default class Charts extends Component {
 
           self.updateCharts(self.props)
   }
-  componentDidUpdate(nextProps){
+  componentDidUpdate(){
     // perform any preparations for an upcoming update
-    this.updateCharts(nextProps,'update')
+    this.updateCharts(this.props,'update')
   }
   render() {
     return(
