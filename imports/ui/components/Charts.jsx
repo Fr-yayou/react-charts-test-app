@@ -52,7 +52,12 @@ export default class Charts extends Component {
       .style("text-anchor", "end")
       .text("Price");
 
-    let bars = svg.selectAll("rect").data(projectData);
+    if(request == 'update') {
+      console.info(svg.selectAll("rect"))
+      let bars = svg.selectAll("rect").transition().duration(500).remove();
+    }
+
+    bars = svg.selectAll("rect").data(projectData);
     bars.enter()
         .append("rect")
         .attr("fill", function(d,i) {
@@ -75,6 +80,13 @@ export default class Charts extends Component {
     bars.exit()
         .remove();
 
+    if(request == 'update') {
+      console.warn(svg.selectAll(".xLabel"))
+        svg.selectAll(".qtyLabel").transition().duration(100).remove();
+        svg.selectAll(".xLabel").transition().duration(100)
+        .remove();
+      }
+
     let qtyLabel = svg.selectAll(".qtyLabel").data(projectData);
     qtyLabel.enter()
     	  .append("text")
@@ -94,12 +106,14 @@ export default class Charts extends Component {
 			return d.qty;
 		});
 
+
    	let xLabel = svg.selectAll(".xLabel").data(projectData);
     xLabel.enter()
     	  .append("text")
     	  .attr("class", "xLabel")
 
-    xLabel.text(function(d, i) {
+    xLabel.transition()
+    	.duration(1000).text(function(d, i) {
     	  	return d.xLabel;
     	  })
     	  .attr("text-anchor", "middle")
