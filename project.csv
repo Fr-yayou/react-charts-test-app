@@ -1,0 +1,4 @@
+name,from.hours,from.mins,to.hours,to.mins,date,hours,price,course,classes,description
+project-new,10,12,12,12,2018-03-03T00:00:00Z,2:0,23,course 1,class 2,this is not so new project of mine so dont worry
+project-new2,10,12,14,14,2018-03-03T00:00:00Z,4:4,26,course 2,class 3,this ject of mine so dont worry
+
