@@ -11,13 +11,15 @@ import ProjectDisplayContainer from './ProjectDisplayContainer';
 
 const manipulateDate = (date) => { return moment(date).format('DD-MM-YYYY')}
 
-const mapData = (projectData) => {
+export const mapData = (projectData) => {
     let data = [];
     projectData.map(function(project) {
-      data.push({
-        xLabel : project.name,
-        qty : Number(project.price)
-      })
+      if(project.name && project.price) {
+        data.push({
+          xLabel : project.name,
+          qty : Number(project.price)
+        })
+      }
     });
     return data;
 }

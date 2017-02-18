@@ -5,30 +5,25 @@ import Alert from 'react-s-alert';
 import flat,{unflatten} from 'flat';
 
 import Loader from './Loader';
+import {mapData} from './ProjectDisplay';
 import HelperFunctions from '../functions';
+import Charts from './Charts';
 
 export default class Upload extends Component {
   constructor(){
     super();
     this.state = {
-      uploading : false
+      uploading : false,
+      data : null
     }
     this.handleUploadingFile = this.handleUploadingFile.bind(this);
     this.csvFileParse = this.csvFileParse.bind(this);
   }
   csvFileParse(currentFile,e) {
-    Papa.parse( currentFile, {
-     header: true,
-     complete( results, file ) {
-       // Handle the upload here
-       console.log(unflatten(results.data[0]),results.data);
-       return results;
-     },
-     error(error,file) {
-       console.log(error.reason)
-     }
-     });
-    e.preventDefault()
+    return new Promise(function(resolve, reject) {
+      Papa.parse(currentFile, { dynamicTyping : true,header: true, complete: resolve ,error : reject});
+    });
+    e.preventDefault();
   }
   handleUploadingFile(e) {
     var self = this;
@@ -38,9 +33,23 @@ export default class Upload extends Component {
      let currentFile = this.refs.file.files[0];
      let fileExtension = HelperFunctions.getFileExtension(currentFile.name);
      let switchOutput;
-      switch (fileExtension) {
+     switch (fileExtension) {
        case 'csv':
-        this.csvFileParse(currentFile,e);
+        this.csvFileParse(currentFile,e).then((results) => {
+          switchOutput = results.data.map((data) => {
+            console.log(data,data.date)
+            data.date = new Date(data.date);
+            return unflatten(data);
+          })
+          console.log(switchOutput,"switch output")
+          let switchOutputFinal = mapData(switchOutput);
+          this.setState({
+            data : switchOutputFinal
+          })
+          console.log(switchOutputFinal,"------------------------switch final");
+        },(err) => {
+          console.log(err);
+        })
        break;
        default :
        Alert.error('File Format is not supported',{
@@ -48,13 +57,13 @@ export default class Upload extends Component {
          effect: 'jelly',
        })
      }
-     console.log(switchOutput,unflatten);
      self.setState({
        uploading: false
      })
   }
   render() {
-    let {uploading} = this.state;
+    let {uploading,data} = this.state;
+
     let renderComponent = () => {
       console.log(uploading)
       if(uploading) {
@@ -72,11 +81,18 @@ export default class Upload extends Component {
       }
     }
 
+    let renderCharts = () => {
+      if(data != null) {
+        return (<Charts projectData={data} height={255} width={750} />)
+      }
+    }
+
     return(
       <div className="upload">
         <Alert stack={true} timeout={3000} />
         <h2>Upload any CSV or XLXS file</h2>
         {renderComponent()}
+        {renderCharts()}
       </div>
     )
   }

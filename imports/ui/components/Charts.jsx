@@ -123,6 +123,7 @@ export default class Charts extends Component {
   }
   componentDidUpdate(){
     // perform any preparations for an upcoming update
+    console.warn('updating the charts.....................')
     this.updateCharts(this.props,'update')
   }
   render() {
