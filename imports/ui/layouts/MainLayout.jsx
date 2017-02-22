@@ -1,9 +1,9 @@
 import React , {Component} from 'react';
-import Navigation from '../components/Header'
+import Header from '../components/Header'
 
 export default MainLayout = ({content}) => (
-    <div className="main-layout">
-      <Header />
-      {content}
-    </div>
+  <div className="main-layout">
+        <Header />
+        {content}
+      </div>
 );

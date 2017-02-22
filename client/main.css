@@ -127,6 +127,52 @@ table {
   }
 
   /*
+    PAGINATION COMPONENT
+  */
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+  .pagination ul {
+    display : flex;
+  }
+
+  .pagination .previous, .pagination .next {
+    color: white;
+    border: .2rem solid #57b567;
+    background-color: #50d550;
+    transition: all .2s;
+  }
+
+  .pagination .previous:hover , .pagination .next:hover {
+    cursor: pointer;
+    border: .2rem solid #57b567;
+  }
+
+  .pagination ul li {
+    padding: .5rem;
+  }
+
+  .pagination .selected {
+    color: white;
+    background-color : #50d550;
+  }
+
+  .pagination .disabled {
+    color : black;
+    background-color : #e3e3e3;
+    border: none;
+  }
+  .pagination ul li:hover {
+    cursor: pointer;
+    border: .1rem solid #50d550;
+  }
+
+  .pagination ul li:first-child , .pagination ul li:last-child {
+    margin: 0 .5rem;
+  }
+
+  /*
     RING ANIMATION.
   */
 

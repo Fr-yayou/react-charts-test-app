@@ -4,17 +4,6 @@ import { createContainer } from 'meteor/react-meteor-data'
 import { Projects } from '../../api/projects/projects.js'
 import { ProjectDisplay } from './ProjectDisplay'
 
-// export default class ProjectDisplayContainer extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <h3>project display container........</h3>
-//         {console.log(createContainer)}
-//         </div>
-//     );
-//   }
-// }
-
 function filterData(searchInput,selectorName) {
   if(searchInput || searchInput == '') {
     if(selectorName == 'hours') {
@@ -41,24 +30,11 @@ function filterData(searchInput,selectorName) {
   }
 }
 
-
-export default ProjectDisplayContainer = createContainer(({ searchInput,selectorName }) => {
-    const subscription = Meteor.subscribe('project-data');
+export default ProjectDisplayContainer = createContainer(({ searchInput,selectorName,skip,onSkip}) => {
+    const subscription = Meteor.subscribe('project-data',skip);
     const loading = !subscription.ready();
-    const ready = subscription.ready();
+    const projectCounter = Counts.get('projectCounter') || 0;
+  
     let projects = filterData(searchInput,selectorName);
-    return { loading, projects,ready ,filterData};
+    return { loading, projects,filterData,onSkip,projectCounter};
   }, ProjectDisplay);
-
-
-//
-// const composer = ( props, onData ) => {
-//   const subscription = Meteor.subscribe('project-data');
-//
-//   if ( subscription.ready() ) {
-//     let projects = Projects.find().fetch();
-//     onData( null, { projects } );
-//   }
-// };
-//
-// export const ProjectDisplayContainer = composeWithTracker( composer )( ProjectDisplay );

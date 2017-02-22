@@ -228,6 +228,64 @@ export default StyleSheet.create({
         "marginLeft": "auto",
         "Border": ".1rem solid gray"
     },
+    "pagination": {
+        "display": "flex",
+        "justifyContent": "center"
+    },
+    "pagination ul": {
+        "display": "flex"
+    },
+    "pagination previous": {
+        "color": "white",
+        "border": ".2rem solid #57b567",
+        "backgroundColor": "#50d550",
+        "transition": "all .2s"
+    },
+    "pagination next": {
+        "color": "white",
+        "border": ".2rem solid #57b567",
+        "backgroundColor": "#50d550",
+        "transition": "all .2s"
+    },
+    "pagination previous:hover": {
+        "cursor": "pointer",
+        "border": ".2rem solid #57b567"
+    },
+    "pagination next:hover": {
+        "cursor": "pointer",
+        "border": ".2rem solid #57b567"
+    },
+    "pagination ul li": {
+        "paddingTop": 0.5,
+        "paddingRight": 0.5,
+        "paddingBottom": 0.5,
+        "paddingLeft": 0.5
+    },
+    "pagination selected": {
+        "color": "white",
+        "backgroundColor": "#50d550"
+    },
+    "pagination disabled": {
+        "color": "black",
+        "backgroundColor": "#e3e3e3",
+        "border": "none"
+    },
+    "pagination ul li:hover": {
+        "cursor": "pointer",
+        "border": ".1rem solid #50d550"
+    },
+    "pagination ul li:first-child": {
+        "marginTop": 0,
+        "marginRight": 0.5,
+        "marginBottom": 0,
+        "marginLeft": 0.5
+    },
+    "pagination ul li:last-child": {
+        "marginTop": 0,
+        "marginRight": 0.5,
+        "marginBottom": 0,
+        "marginLeft": 0.5
+    },
     "uil-ring-css": {
         "background": "none",
         "position": "relative",

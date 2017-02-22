@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Meteor} from 'meteor/meteor';
@@ -48,7 +49,11 @@ const calculateFormattedTime = (fromTime,toTime) => {
 }
 
 export default class ProjectDataForm extends Component {
-  componentDidMount() {
+    constructor() {
+      super();
+      this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    }
+    componentDidMount() {
       var el = ReactDOM.findDOMNode(this); // This is de div we are rendering
       console.log(this);
     }
@@ -153,7 +158,7 @@ export default class ProjectDataForm extends Component {
               </select>
           </div>
           <div className="form-elem-wrapper">
-            <input type="button" value="submit" onClick={this.handleFormSubmit.bind(this)}/>
+            <input type="button" value="submit" onClick={this.handleFormSubmit}/>
           </div>
         </form>
       </div>

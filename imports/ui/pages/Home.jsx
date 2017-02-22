@@ -12,13 +12,21 @@ export default class Home extends Component {
     super(props);
     this.state = {
       searchInput : '',
-      selectorName : ''
+      selectorName : '',
+      skip : 0,
     }
+    this.handleSearchInputs = this.handleSearchInputs.bind(this);
+    this.handleSkipCount = this.handleSkipCount.bind(this);
   }
   handleSearchInputs(searchInput,selectorName) {
     this.setState({
       searchInput : searchInput,
       selectorName : selectorName
+    })
+  }
+  handleSkipCount(skip) {
+    this.setState({
+      skip : skip
     })
   }
   renderComponent() {
@@ -27,8 +35,8 @@ export default class Home extends Component {
     }else if(FlowRouter.getRouteName() == 'homePageDisplayData') {
       return (
         <div className="display-project-page">
-          <Search onSearchInputs={this.handleSearchInputs.bind(this)} />
-          <ProjectDisplayContainer searchInput={this.state.searchInput} selectorName={this.state.selectorName}/>
+          <Search onSearchInputs={this.handleSearchInputs} />
+          <ProjectDisplayContainer searchInput={this.state.searchInput} selectorName={this.state.selectorName} onSkip={this.handleSkipCount} skip={this.state.skip}/>
         </div>
       );
     }

@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
+import flat,{unflatten} from 'flat';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 import Alert from 'react-s-alert';
-import flat,{unflatten} from 'flat';
 
 import Loader from './Loader';
 import {mapData} from './ProjectDisplay';
@@ -18,12 +18,28 @@ export default class Upload extends Component {
     }
     this.handleUploadingFile = this.handleUploadingFile.bind(this);
     this.csvFileParse = this.csvFileParse.bind(this);
+    this.excelFileParse = this.excelFileParse.bind(this);
   }
   csvFileParse(currentFile,e) {
     return new Promise(function(resolve, reject) {
       Papa.parse(currentFile, { dynamicTyping : true,header: true, complete: resolve ,error : reject});
     });
     e.preventDefault();
+  }
+  excelFileParse(currentFile) {
+    console.log(XLS);
+    var reader = new FileReader();
+    var name = currentFile.name;
+    reader.onload = function(e) {
+      var data = currentFile;
+
+      /* if binary string, read with type 'binary' */
+      var workbook = XLS.read(data, {type: 'binary'});
+
+      /* DO SOMETHING WITH workbook HERE */
+      console.log(workbook);
+    };
+    reader.readAsBinaryString(currentFile);
   }
   handleUploadingFile(e) {
     var self = this;
@@ -37,20 +53,26 @@ export default class Upload extends Component {
        case 'csv':
         this.csvFileParse(currentFile,e).then((results) => {
           switchOutput = results.data.map((data) => {
-            console.log(data,data.date)
             data.date = new Date(data.date);
             return unflatten(data);
           })
-          console.log(switchOutput,"switch output")
           let switchOutputFinal = mapData(switchOutput);
           this.setState({
             data : switchOutputFinal
           })
           console.log(switchOutputFinal,"------------------------switch final");
         },(err) => {
-          console.log(err);
+          Alert.error(err.message , {
+            position: 'top-right',
+            effect: 'jelly',
+          })
         })
        break;
+
+       case 'xls' :
+        this.excelFileParse(currentFile,e);
+      break;
+
        default :
        Alert.error('File Format is not supported',{
          position: 'top-right',

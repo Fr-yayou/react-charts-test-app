@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import {SpinnerView} from 'meteor/dpraburaj:react-spin';
 import { moment } from 'meteor/momentjs:moment';
+import ReactPaginate from 'react-paginate';
 
 import { Projects } from '../../api/projects/projects.js';
 import Loader from './Loader';
@@ -24,7 +26,18 @@ export const mapData = (projectData) => {
     return data;
 }
 
-const renderData = (projectData) => {
+export const calcPages = (totalPages,limit = 3) => {
+  return Math.floor(totalPages/limit) + 1;
+}
+
+const handlePaginateClick = (skipPages) => {
+  return (currentPage) => {
+    if(currentPage.selected)
+      skipPages(currentPage.selected)
+  }
+}
+
+const renderData = (projectData,onSkip,projectCounter) => {
   return ( projectData && projectData.length > 0 ) ?
       <div className="project-display-wrapper">
           <table>
@@ -60,10 +73,13 @@ const renderData = (projectData) => {
               }
             </tbody>
           </table>
+          <div className="pagination">
+            <ReactPaginate pageCount={calcPages(projectCounter)} onPageChange={handlePaginateClick(onSkip)} pageLinkClassName={'paginate-link'} />
+          </div>
           <Charts projectData={mapData(projectData)} height={255} width={750} />
       </div> : <p>No projects yet!</p>
 }
 
-export const ProjectDisplay = ({loading,projects}) => {
-  return (loading || typeof loading == 'undefined') ? <Loader /> : renderData(projects);
+export const ProjectDisplay = ({loading,projects,onSkip,projectCounter}) => {
+  return (loading || typeof loading == 'undefined') ? <Loader /> : renderData(projects,onSkip,projectCounter);
 };
