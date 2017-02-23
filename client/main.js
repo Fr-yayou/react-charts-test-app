@@ -286,6 +286,9 @@ export default StyleSheet.create({
         "marginBottom": 0,
         "marginLeft": 0.5
     },
+    "project-table": {
+        "animation": "smooth-change-anim .7s ease-in"
+    },
     "uil-ring-css": {
         "background": "none",
         "position": "relative",

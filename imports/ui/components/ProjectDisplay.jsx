@@ -37,7 +37,7 @@ const handlePaginateClick = (skipPages) => {
 const renderData = (projectData,onSkip,skip,projectCounter) => {
   return ( projectData && projectData.length > 0 ) ?
       <div className="project-display-wrapper">
-          <table>
+          <table className="project-table">
             {console.log(projectData,"-----")}
             <thead>
               <tr>

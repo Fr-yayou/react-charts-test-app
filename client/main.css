@@ -173,6 +173,29 @@ table {
   }
 
   /*
+    PROJECT TABLE ANIMATION
+  */
+
+  .project-table {
+    animation: smooth-change-anim .7s ease-in;
+  }
+
+ @keyframes smooth-change-anim {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity : 0.5;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity : 1;
+    transform : scale(1);
+  }
+ }
+
+  /*
     RING ANIMATION.
   */
 
