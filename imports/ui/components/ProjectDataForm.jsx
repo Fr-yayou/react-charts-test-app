@@ -32,6 +32,7 @@ const dislayHours = (total) => {
   return hours+':'+mins;
 }
 
+// This function will return the no of seconds are there in to - from
 const calculateFormattedTime = (fromTime,toTime) => {
   if(!fromTime || !toTime) {
     throw new Error('Time objects are not passed');

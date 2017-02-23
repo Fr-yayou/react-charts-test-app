@@ -9,7 +9,6 @@ import Search from './Search';
 import Charts from './Charts';
 import ProjectDisplayContainer from './ProjectDisplayContainer';
 
-
 export const mapData = (projectData) => {
     let data = [];
     projectData.map(function(project) {
@@ -24,7 +23,8 @@ export const mapData = (projectData) => {
 }
 
 export const calcPages = (totalPages,limit = 3) => {
-  return Math.floor(totalPages/limit) + 1;
+  let pages = (totalPages/limit)
+  return (pages%1) == 0 ? pages : Math.floor(pages) + 1;
 }
 
 const handlePaginateClick = (skipPages) => {
@@ -62,7 +62,14 @@ const renderData = (projectData,onSkip,skip,projectCounter) => {
             </tbody>
           </table>
           <div className="pagination">
-            <ReactPaginate forcePage={skip} pageCount={calcPages(projectCounter)} onPageChange={handlePaginateClick(onSkip)} pageLinkClassName={'paginate-link'} />
+            <ReactPaginate
+              forcePage={skip}
+              pageCount={calcPages(projectCounter)}
+              onPageChange={handlePaginateClick(onSkip)}
+              pageLinkClassName={'paginate-link'}
+              pageRangeDisplayed={5}
+              marginPagesDisplayed ={5}
+              />
           </div>
           <Charts projectData={mapData(projectData)} height={255} width={750} />
       </div> : <p>No projects yet!</p>
