@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {SpinnerView} from 'meteor/dpraburaj:react-spin';
-import { moment } from 'meteor/momentjs:moment';
 import ReactPaginate from 'react-paginate';
 
 import { Projects } from '../../api/projects/projects.js';
 import Loader from './Loader';
-import Cell from './Cell';
+import Cell from './ProjectDetail';
 import Search from './Search';
 import Charts from './Charts';
 import ProjectDisplayContainer from './ProjectDisplayContainer';
 
-const manipulateDate = (date) => { return moment(date).format('DD-MM-YYYY')}
 
 export const mapData = (projectData) => {
     let data = [];
@@ -37,7 +34,7 @@ const handlePaginateClick = (skipPages) => {
   }
 }
 
-const renderData = (projectData,onSkip,projectCounter) => {
+const renderData = (projectData,onSkip,skip,projectCounter) => {
   return ( projectData && projectData.length > 0 ) ?
       <div className="project-display-wrapper">
           <table>
@@ -58,28 +55,19 @@ const renderData = (projectData,onSkip,projectCounter) => {
               {
                   projectData.map((project) => {
                     return (
-                      <tr key={project._id}>
-                        <td>{project.name}</td>
-                        <td>{project.description}</td>
-                        <td>{project.from.hours}:{project.from.mins}</td>
-                        <td>{project.to.hours}:{project.to.mins}</td>
-                        <Cell price={project.price} projectId={project._id} />
-                        <td>{manipulateDate(project.date)}</td>
-                        <td>{project.course}</td>
-                        <td>{project.classes}</td>
-                      </tr>
+                      <ProjectDetail key={project._id} project={project} />
                     )
                   })
               }
             </tbody>
           </table>
           <div className="pagination">
-            <ReactPaginate pageCount={calcPages(projectCounter)} onPageChange={handlePaginateClick(onSkip)} pageLinkClassName={'paginate-link'} />
+            <ReactPaginate forcePage={skip} pageCount={calcPages(projectCounter)} onPageChange={handlePaginateClick(onSkip)} pageLinkClassName={'paginate-link'} />
           </div>
           <Charts projectData={mapData(projectData)} height={255} width={750} />
       </div> : <p>No projects yet!</p>
 }
 
-export const ProjectDisplay = ({loading,projects,onSkip,projectCounter}) => {
-  return (loading || typeof loading == 'undefined') ? <Loader /> : renderData(projects,onSkip,projectCounter);
+export const ProjectDisplay = ({loading,projects,onSkip,skip,projectCounter}) => {
+  return (loading || typeof loading == 'undefined') ? <Loader /> : renderData(projects,onSkip,skip,projectCounter);
 };

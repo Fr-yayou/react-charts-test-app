@@ -34,7 +34,7 @@ export default ProjectDisplayContainer = createContainer(({ searchInput,selector
     const subscription = Meteor.subscribe('project-data',skip);
     const loading = !subscription.ready();
     const projectCounter = Counts.get('projectCounter') || 0;
-  
+
     let projects = filterData(searchInput,selectorName);
-    return { loading, projects,filterData,onSkip,projectCounter};
+    return { loading, projects,filterData,onSkip, skip,projectCounter};
   }, ProjectDisplay);
