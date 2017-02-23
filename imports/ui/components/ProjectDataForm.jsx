@@ -134,7 +134,9 @@ export default class ProjectDataForm extends Component {
             <label>Date</label>
             <DateField
                 dateFormat="YYYY-MM-DD"
-                forceValidDate={true}>
+                defaultValue= {new Date()}
+                forceValidDate={true}
+                >
                 <DatePicker
                   navigation={true}
                   locale="en"

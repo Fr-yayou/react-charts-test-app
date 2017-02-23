@@ -27,6 +27,7 @@
     "react-meteor-data": "^0.2.10",
     "react-mounter": "^1.2.0",
     "react-paginate": "^4.1.1",
+    "react-polymer": "^3.0.0",
     "react-s-alert": "^1.2.2",
     "simpl-schema": "^0.1.0"
   }

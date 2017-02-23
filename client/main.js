@@ -1,3 +1,4 @@
+import reactPolymer from 'react-polymer';
 import React, {StyleSheet, Dimensions, PixelRatio} from "react-native";
 const {width, height, scale} = Dimensions.get("window"),
     vw = width / 100,

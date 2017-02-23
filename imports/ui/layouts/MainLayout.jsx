@@ -1,3 +1,4 @@
+import reactPolymer from 'react-polymer';
 import React , {Component} from 'react';
 import Header from '../components/Header'
 

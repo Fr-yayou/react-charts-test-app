@@ -40,7 +40,7 @@ export default class Charts extends Component {
           .call(xAxis);
     let yAxisTransition = svg.append("g")
       .attr("class", "y axis")
-      .attr("transform","translate(30,10)")
+      .attr("transform","translate(35,10)")
       .call(yAxis)
       .append("text")
       .attr("transform", "rotate(-90)")

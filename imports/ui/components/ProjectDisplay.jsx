@@ -40,7 +40,7 @@ const renderData = (projectData,onSkip,skip,projectCounter) => {
       <div className="project-display-wrapper">
           <table className="project-table">
             {console.log(skip," skip value is being displayed-----")}
-            <thead>
+            <thead className="project-table-header">
               <tr>
                 <th><input type="text" ref="name" className="search-fields" onChange={this.handleSearchInputs} defaultValue="Name" /></th>
                 <th><input type="text" ref="description" className="search-fields" onChange={this.handleSearchInputs} defaultValue="Description" /></th>
