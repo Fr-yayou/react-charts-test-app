@@ -23,13 +23,14 @@ export const mapData = (projectData) => {
 }
 
 export const calcPages = (totalPages,limit = 3) => {
-  let pages = (totalPages/limit)
+  let pages = (totalPages/limit);
   return (pages%1) == 0 ? pages : Math.floor(pages) + 1;
 }
 
 const handlePaginateClick = (skipPages) => {
   return (currentPage) => {
-    if(currentPage.selected)
+    console.log(currentPage.selected,"selected page..........");
+    if(currentPage.selected >= 0)
       skipPages(currentPage.selected)
   }
 }
@@ -38,7 +39,7 @@ const renderData = (projectData,onSkip,skip,projectCounter) => {
   return ( projectData && projectData.length > 0 ) ?
       <div className="project-display-wrapper">
           <table className="project-table">
-            {console.log(projectData,"-----")}
+            {console.log(skip," skip value is being displayed-----")}
             <thead>
               <tr>
                 <th><input type="text" ref="name" className="search-fields" onChange={this.handleSearchInputs} defaultValue="Name" /></th>

@@ -25,6 +25,7 @@ export default class Home extends Component {
     })
   }
   handleSkipCount(skip) {
+    console.log('handle skip is being called',skip);
     this.setState({
       skip : skip
     })
