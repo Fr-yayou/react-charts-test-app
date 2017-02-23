@@ -41,14 +41,26 @@ const renderData = (projectData,onSkip,skip,projectCounter) => {
             {console.log(projectData,"-----")}
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>From Time(hours:mins)</th>
-                <th>To Time(hours:mins)</th>
-                <th>Price</th>
-                <th>Date</th>
-                <th>course</th>
-                <th>class</th>
+                <th><input type="text" ref="name" className="search-fields" onChange={this.handleSearchInputs} defaultValue="Name" /></th>
+                <th><input type="text" ref="description" className="search-fields" onChange={this.handleSearchInputs} defaultValue="Description" /></th>
+                <th>
+                  <label>
+                    From Time
+                    <br />
+                    <input type="time" ref="fromTime" onChange={this.handleSearchInputs} className="search-fields" placeholder="hrs:mins" />
+                  </label>
+                </th>
+                <th>
+                  <label>
+                    To Time
+                    <br />
+                    <input type="time" ref="toTime" onChange={this.handleSearchInputs} className="search-fields" placeholder="hrs:mins" />
+                  </label>
+                </th>
+                <th><label>Price :<input type="number" ref="price" onChange={this.handleSearchInputs} className="search-fields" placeholder="price" /></label></th>
+                <th>Date : <input type="date" ref="date" onChange={this.handleSearchInputs} className="search-fields" placeholder="date" /></th>
+                <th><input type="text" ref="course" onChange={this.handleSearchInputs} className="search-fields" defaultValue="course" placeholder="course" /> </th>
+                <th><input type="text" ref="class" onChange={this.handleSearchInputs} className="search-fields" defaultValue="class" placeholder="class" /></th>
               </tr>
             </thead>
             <tbody>

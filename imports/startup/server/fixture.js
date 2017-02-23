@@ -89,11 +89,66 @@ Meteor.startup(() => {
         course : 'course 3',
         classes : 'class 1',
         date : new Date(),
-      }
+      },
+      obj6 = {
+        name : 'fine project',
+        description : 'project sample description',
+        from : {
+          hours : 21,
+          mins : 02,
+        },
+        to : {
+          hours : 24,
+          mins : 14,
+        },
+        price : 16,
+        hours : 192,
+        course : 'course 1',
+        classes : 'class 2',
+        date : new Date("2018-06-06"),
+      },
+      obj7 = {
+        name : 'fine project 3',
+        description : 'project sample description',
+        from : {
+          hours : 21,
+          mins : 02,
+        },
+        to : {
+          hours : 24,
+          mins : 14,
+        },
+        price : 16,
+        hours : 192,
+        course : 'course 1',
+        classes : 'class 2',
+        date : new Date("2018-02-06"),
+      },
+      obj8 = {
+        name : 'fine new project',
+        description : 'project sample description',
+        from : {
+          hours : 21,
+          mins : 02,
+        },
+        to : {
+          hours : 24,
+          mins : 14,
+        },
+        price : 16,
+        hours : 192,
+        course : 'course 1',
+        classes : 'class 2',
+        date : new Date("2018-02-06"),
+      },
     Projects.insert(obj1);
     Projects.insert(obj2);
     Projects.insert(obj3);
     Projects.insert(obj4);
     Projects.insert(obj5);
+    Projects.insert(obj6);
+    Projects.insert(obj7);
+    Projects.insert(obj8);
+
   }
 })
