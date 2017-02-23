@@ -96,6 +96,8 @@ export default class Charts extends Component {
         .text(function(d, i) {
             return d.qty;
         });
+    qtyLabel.exit().remove();
+
     let xLabel = svg.selectAll(".xLabel").data(projectData);
     xLabel.enter()
           .append("text")
@@ -111,6 +113,7 @@ export default class Charts extends Component {
           .attr("y", function(d, i) {
             return props.height - 5;
           });
+    xLabel.exit().remove();
   }
   componentDidMount() {
     let self = this;

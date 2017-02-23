@@ -2,7 +2,7 @@ import {Meteor} from 'meteor/meteor'
 import React,{Component} from 'react'
 import { createContainer } from 'meteor/react-meteor-data'
 import { Projects } from '../../api/projects/projects.js'
-import { ProjectDisplay } from './ProjectDisplay'
+import  ProjectDisplay  from './ProjectDisplay'
 
 function filterData(searchInput,selectorName) {
   if(searchInput || searchInput == '') {

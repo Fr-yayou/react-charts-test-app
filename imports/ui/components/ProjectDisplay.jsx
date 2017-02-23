@@ -75,6 +75,23 @@ const renderData = (projectData,onSkip,skip,projectCounter) => {
       </div> : <p>No projects yet!</p>
 }
 
-export const ProjectDisplay = ({loading,projects,onSkip,skip,projectCounter}) => {
-  return (loading || typeof loading == 'undefined') ? <Loader /> : renderData(projects,onSkip,skip,projectCounter);
-};
+export default class ProjectDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchInput : '',
+      selectorName : '',
+    }
+    this.handleSearchInputs = this.handleSearchInputs.bind(this);
+  }
+  handleSearchInputs(searchInput,selectorName) {
+    this.setState({
+      searchInput : searchInput,
+      selectorName : selectorName
+    })
+  }
+  render() {
+    let {loading,projects,onSkip,skip,projectCounter} = this.props;
+    return (loading || typeof loading == 'undefined') ? <Loader /> : renderData(projects,onSkip,skip,projectCounter);
+  }
+}
