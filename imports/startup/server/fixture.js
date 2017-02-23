@@ -140,7 +140,7 @@ Meteor.startup(() => {
         course : 'course 1',
         classes : 'class 2',
         date : new Date("2018-02-06"),
-      },
+      }
     Projects.insert(obj1);
     Projects.insert(obj2);
     Projects.insert(obj3);
