@@ -195,6 +195,18 @@ table {
   }
  }
 
+ /*
+    DATE PICKER
+ */
+
+ .react-date-field--theme-default {
+   border : none !important;
+ }
+
+ .react-date-field {
+   width: 100%;
+ }
+
   /*
     RING ANIMATION.
   */

@@ -289,6 +289,12 @@ export default StyleSheet.create({
     "project-table": {
         "animation": "smooth-change-anim .7s ease-in"
     },
+    "react-date-field--theme-default": {
+        "border": "none !important"
+    },
+    "react-date-field": {
+        "width": "100%"
+    },
     "uil-ring-css": {
         "background": "none",
         "position": "relative",

@@ -4,8 +4,10 @@ import ReactDOM from 'react-dom';
 import {Meteor} from 'meteor/meteor';
 import HelperFunctions from '../functions.js'
 
+import 'react-date-picker/index.css'
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
+import { DateField, DatePicker } from 'react-date-picker';
 import Alert from 'react-s-alert';
 
 const checkValue = (value,type,msg) => {
@@ -67,16 +69,18 @@ export default class ProjectDataForm extends Component {
         object.price = Number(checkValue(projectData.price.value.trim(),'price'));
         HelperFunctions.validatePrice(object.price);
         object.from = {};
-        object.from.hours = checkValue(projectData.fromHours.value.trim(),'hours in from ');
-        object.from.mins = checkValue(projectData.fromMins.value.trim(),'mins in from ');
+        let fromTime = projectData.fromTime.value.split(':');
+        object.from.hours = checkValue(fromTime[0],'hours in from ');
+        object.from.mins = checkValue(fromTime[1],'mins in from ');
 
         object.to = {}
-        object.to.hours = checkValue(projectData.toHours.value.trim(),'hours in to ');
-        object.to.mins = checkValue(projectData.toMins.value.trim(),'hours in to ');
+        let toTime = projectData.toTime.value.split(':');
+        object.to.hours = checkValue(toTime[0],'hours in to ');
+        object.to.mins = checkValue(toTime[1],'hours in to ');
         object.course = checkValue(projectData.courses[projectData.courses.selectedIndex].value,'courses','course is not selected');
         object.classes = checkValue(projectData.classes[projectData.classes.selectedIndex].value,'classes','class is not selected');
         object.hours = calculateFormattedTime(object.from,object.to);
-        object.date = new Date(checkValue(projectData.date.value,'date','date is not selected'));
+        object.date = new Date(checkValue($('.react-date-field__input')[0].value,'date','date is not selected'));
 
         console.log(object);
         Meteor.call('insertProjectData',object,(err,res) => {
@@ -84,7 +88,7 @@ export default class ProjectDataForm extends Component {
             Alert.error(err.message);
           else {
             document.querySelector('.project-form').reset();
-            Alert.success(res," data added successfully");
+            Alert.success("Project added successfully");
           }
         })
       }
@@ -117,20 +121,29 @@ export default class ProjectDataForm extends Component {
           <div className="form-elem-wrapper">
               <label >From (Hours</label> :
               <label >Mins)</label>
-
-              <input type="number" min="0" max="23" ref="fromHours" placeholder="hours"/>
-              <input type="number" min="0" max="59" ref="fromMins" placeholder="mins"/>
+              <input type="time" id="fromTime" ref="fromTime" name="time" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required />
           </div>
 
           <div className="form-elem-wrapper">
               <label>To (Hours</label> :
               <label>Mins)</label>
-
-              <input type="number" min="0" max="23" ref="toHours" placeholder="hours"/>
-              <input type="number" min="0" max="59" ref="toMins" placeholder="mins"/>
+              <input type="time" ref="toTime" name="time" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required />
           </div>
           <div className="form-elem-wrapper">
-            <input type="date" ref="date" />
+            <label>Date</label>
+            <DateField
+                dateFormat="YYYY-MM-DD"
+                forceValidDate={true}>
+                <DatePicker
+                  navigation={true}
+                  locale="en"
+                  forceValidDate={true}
+                  highlightWeekends={true}
+                  highlightToday={true}
+                  weekNumbers={true}
+                  weekStartDay={0}
+                />
+              </DateField>
           </div>
           <div className="form-elem-wrapper">
             <label>Price $</label>
