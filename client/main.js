@@ -1,4 +1,3 @@
-import reactPolymer from 'react-polymer';
 import React, {StyleSheet, Dimensions, PixelRatio} from "react-native";
 const {width, height, scale} = Dimensions.get("window"),
     vw = width / 100,
@@ -115,6 +114,17 @@ export default StyleSheet.create({
         "marginRight": "auto",
         "marginBottom": 1,
         "marginLeft": "auto"
+    },
+    "project-table-header input[type]": {
+        "display": "inline-block",
+        "width": "80%",
+        "paddingTop": 0.5,
+        "paddingRight": 0.5,
+        "paddingBottom": 0.5,
+        "paddingLeft": 0.5,
+        "textAlign": "center",
+        "border": "none",
+        "borderBottom": ".3rem solid #50d550"
     },
     "project-form": {
         "width": "100%"
@@ -288,7 +298,7 @@ export default StyleSheet.create({
         "marginLeft": 0.5
     },
     "project-table": {
-        "animation": "smooth-change-anim .7s ease-in"
+        "animation": "smooth-change-anim .4s ease-in"
     },
     "react-date-field--theme-default": {
         "border": "none !important"

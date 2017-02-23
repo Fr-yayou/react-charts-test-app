@@ -63,6 +63,20 @@ table {
   margin: 1rem auto;
 }
 
+/*
+  PROJECT COMPONENT STYLES
+*/
+
+.project-table-header input[type] {
+  display: inline-block;
+  width: 80%;
+  padding: .5rem;
+  text-align: center;
+  border: none;
+  border-bottom : .3rem solid #50d550;
+
+}
+
 .project-form {
   width: 100%; }
   .project-form-wrapper {
@@ -177,7 +191,7 @@ table {
   */
 
   .project-table {
-    animation: smooth-change-anim .7s ease-in;
+    animation: smooth-change-anim .4s ease-in;
   }
 
  @keyframes smooth-change-anim {

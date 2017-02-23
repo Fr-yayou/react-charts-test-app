@@ -4,7 +4,7 @@ import Navigation from './Navigation';
 export default Header = () => (
   <header>
    <div className="logo">
-     <h1>React Sample Charts App</h1>
+     <h2>React Sample Charts App</h2>
    </div>
    <Navigation />
  </header>
